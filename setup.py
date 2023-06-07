@@ -60,6 +60,9 @@ def get_java_home():
 
     env_home = os.environ.get('JAVA_HOME')
     if env_home:
+        # if is_windows():
+        #     env_home = env_home.replace('\\','/')
+        #     print('JAVA HOME Path for win32: {0}'.format(env_home))
         if os.path.exists(env_home):
             _java_home = env_home
             return env_home
@@ -123,7 +126,7 @@ def get_java_lib_folders():
             if is_windows():
                 for filename in fnmatch.filter(filenames, '*jvm.lib'):
                     folders.append(os.path.join(
-                        root, os.path.dirname(filename)))
+                        root, os.path.dirname(filename)).rstrip('\\'))
             else:
                 for filename in fnmatch.filter(filenames, '*jvm.so'):
                     folders.append(os.path.join(
