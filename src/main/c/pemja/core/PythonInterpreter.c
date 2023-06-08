@@ -17,8 +17,8 @@
 #include "MainInterpreter.h"
 #include "PythonInterpreter.h"
 
-// use windows mingw32
-#if (defined(_WIN32) || defined(_WIN64)) && defined(__MINGW32__)
+// use windows
+#if defined(_WIN32) || defined(_WIN64)
     PyMODINIT_FUNC PyInit_pemja_core(void) {
         // pass
     }
