@@ -81,7 +81,7 @@ def is_windows():
 
 def get_python_libs():
     libs = []
-    if not is_bsd():
+    if not is_bsd() and not is_windows():
         libs.append('dl')
     return libs
 
