@@ -34,13 +34,13 @@ public class CommonUtils {
     private boolean initialized = false;
 
     private static final String GET_PYTHON_LIB_PATH_SCRIPT =
-            "from find_libpython import find_libpython;" + "print(find_libpython())";
+            "\"from find_libpython import find_libpython;" + "print(find_libpython())\"";
 
     private static final String GET_SITE_PACKAGES_PATH_SCRIPT =
-            "import sysconfig; print(sysconfig.get_paths()[\"purelib\"])";
+            "\"import sysconfig; print(sysconfig.get_paths()['purelib'])\"";
 
     private static final String GET_PEMJA_MODULE_PATH_SCRIPT =
-            "import pemja;" + "import os;" + "print(os.path.dirname(pemja.__file__))";
+            "\"import pemja;" + "import os;" + "print(os.path.dirname(pemja.__file__))\"";
 
     private CommonUtils() {}
 
@@ -107,8 +107,7 @@ public class CommonUtils {
                 sitePackagesPath = String.join(File.pathSeparator, out.trim().split("\n"));
             } catch (IOException e) {
                 throw new RuntimeException(
-                        "Failed to get pemja path. You need to `pip install pemja` firstly.", e);
-            }
+                        "Failed to get pemja path (or purelib trick failed) . Try `pip install pemja` firstly.", e);
             File libFile = new File(sitePackagesPath);
             if (libFile.isDirectory()) {
                 for (File f : Objects.requireNonNull(libFile.listFiles())) {

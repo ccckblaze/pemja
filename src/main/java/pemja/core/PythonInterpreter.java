@@ -356,6 +356,7 @@ public final class PythonInterpreter implements Interpreter {
         @SuppressWarnings("unchecked")
         synchronized void initialize(String pythonExec) {
             if (!isStarted) {
+                pythonExec = CommonUtils.INSTANCE.isWindows() ? "python" : pythonExec;
                 String pattern = CommonUtils.INSTANCE.isWindows() ? windowsLibPattern : unixLibPattern;
                 String pemjaLibPath =
                         CommonUtils.INSTANCE.getLibraryPathWithPattern(pythonExec, pattern);
